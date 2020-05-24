@@ -2,10 +2,10 @@ package fr.ec.todolist
 
 import android.os.Bundle
 
-class MainActivity : BasicActivity() {
+class AproposActivity : BasicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_apropos)
     }
 }

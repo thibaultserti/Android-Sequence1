@@ -9,19 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/SettingsActivityLabel" />
+            android:label="@string/SettingsActivityLabel"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AproposActivity"
-            android:label="@string/AproposActivityLabel" />
+            android:label="@string/AproposActivityLabel"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ShowListActivity"
-            android:label="@string/ShowListActivityLabel" />
-        <activity android:name=".BasicActivity" />
+            android:label="@string/ShowListActivityLabel"
+            android:parentActivityName=".ChoixListActivity" />
+        <activity
+            android:name=".BasicActivity" />
         <activity
             android:name=".ChoixListActivity"
-            android:label="@string/ChoixListeActivityLabel" />
+            android:label="@string/ChoixListeActivityLabel"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/MainActivityLabel">

@@ -3,7 +3,7 @@ package fr.ec.todolist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-open class BasicActivity : AppCompatActivity() {
+abstract class BasicActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

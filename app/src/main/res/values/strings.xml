@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TodoList</string>
+    <string name="SettingsActivityLabel">Paramètres</string>
+    <string name="AproposActivityLabel">À propos</string>
+    <string name="ShowListActivityLabel">Liste</string>
+    <string name="ChoixListeActivityLabel">Choix de la liste</string>
+    <string name="MainActivityLabel">Accueil</string>
 </resources>

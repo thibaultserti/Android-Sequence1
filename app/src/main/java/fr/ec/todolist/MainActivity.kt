@@ -1,6 +1,8 @@
 package fr.ec.todolist
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.FrameLayout
 
 class MainActivity : BasicActivity() {
@@ -12,5 +14,11 @@ class MainActivity : BasicActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(false)
         val activityContainer: FrameLayout = findViewById(R.id.layout_container)
         layoutInflater.inflate(R.layout.activity_main, activityContainer, true)
+
+        val button: Button = findViewById(R.id.button)
+        button.setOnClickListener {
+            val intent = Intent(this, ChoixListActivity::class.java)
+            startActivity(intent);
+        }
     }
 }

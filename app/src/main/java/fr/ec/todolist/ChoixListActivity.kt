@@ -1,11 +1,14 @@
 package fr.ec.todolist
 
 import android.os.Bundle
+import android.widget.FrameLayout
 
 class ChoixListActivity : BasicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_choix_list)
+        super.setupToolBar()
+        val activityContainer: FrameLayout = findViewById(R.id.layout_container)
+        layoutInflater.inflate(R.layout.activity_choix_list, activityContainer, true)
     }
 }

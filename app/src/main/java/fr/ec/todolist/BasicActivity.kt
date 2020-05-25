@@ -1,5 +1,6 @@
 package fr.ec.todolist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -12,10 +13,11 @@ abstract class BasicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basic)
+
     }
 
     fun setupToolBar() {
-        val toolbar: Toolbar= findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
@@ -27,14 +29,15 @@ abstract class BasicActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.settings->{
-                //Vous exécutez votre code ici
-                true
+        when (item.itemId) {
+            R.id.settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+
             }
-            R.id.apropos->{
-                //Vous exécutez votre code ici
-                true
+            R.id.apropos -> {
+                val intent = Intent(this, AproposActivity::class.java)
+                startActivity(intent)
             }
 
         }

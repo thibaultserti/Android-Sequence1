@@ -1,7 +1,8 @@
-package fr.ec.todolist
+package fr.ec.todolist.activities
 
 import android.os.Bundle
 import android.widget.FrameLayout
+import fr.ec.todolist.R
 
 class AproposActivity : BasicActivity() {
 

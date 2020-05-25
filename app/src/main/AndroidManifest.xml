@@ -11,25 +11,25 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/SettingsActivityLabel"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".AproposActivity"
+            android:name=".activities.AproposActivity"
             android:label="@string/AproposActivityLabel"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".ShowListActivity"
+            android:name=".activities.ShowListActivity"
             android:label="@string/ShowListActivityLabel"
-            android:parentActivityName=".ChoixListActivity" />
+            android:parentActivityName=".activities.ChoixListActivity" />
         <activity
-            android:name=".BasicActivity" />
+            android:name=".activities.BasicActivity" />
         <activity
-            android:name=".ChoixListActivity"
+            android:name=".activities.ChoixListActivity"
             android:label="@string/ChoixListeActivityLabel"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/MainActivityLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

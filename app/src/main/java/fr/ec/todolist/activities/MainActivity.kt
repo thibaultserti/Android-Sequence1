@@ -1,9 +1,10 @@
-package fr.ec.todolist
+package fr.ec.todolist.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
+import fr.ec.todolist.R
 
 class MainActivity : BasicActivity() {
 

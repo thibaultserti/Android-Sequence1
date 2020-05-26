@@ -1,39 +1,13 @@
 package fr.ec.todolist.database
 
 import android.content.Context
-import androidx.room.*
-
-@Entity(tableName = "user")
-data class User(
-    @ColumnInfo(name = "pseudo") val pseudo: String?,
-    //@ColumnInfo(name = "listes") val listes: ArrayList<Int>?,
-    @PrimaryKey(autoGenerate = true) val uid: Int = 0
-
-)
-
-data class Liste(
-    @PrimaryKey(autoGenerate = true) val uid: Int,
-    @ColumnInfo(name = "liste") val liste: ArrayList<String>?
-)
-
-@Dao
-interface UserDao {
-    @Query("SELECT * FROM user")
-    fun getAll(): List<User>
-
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<User>
-
-    @Insert
-    fun insertAll(vararg users: User)
-
-    @Delete
-    fun delete(user: User)
-}
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 
 @Database(entities = [User::class], version = 1)
 abstract class AppDatabase : RoomDatabase(){
-    abstract fun UserDao(): UserDao
+    abstract fun UserDao(): AppDatabaseDao
     companion object {
 
         /**

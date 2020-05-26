@@ -5,4 +5,8 @@
     <string name="ShowListActivityLabel">Liste</string>
     <string name="ChoixListeActivityLabel">Choix de la liste</string>
     <string name="MainActivityLabel">Accueil</string>
+    <string name="labelPseudo">Pseudo</string>
+    <string name="labelButtonOk">OK</string>
+    <string name="labelButtonDisplay">Display</string>
+    <string name="labelButtonClear">Clear</string>
 </resources>

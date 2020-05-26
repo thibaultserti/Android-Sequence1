@@ -13,9 +13,13 @@ interface AppDatabaseDao {
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<User>
 
+    @Query("DELETE FROM user")
+    fun clear()
+
     @Insert
     fun insertAll(vararg users: User)
 
     @Delete
     fun delete(user: User)
+
 }

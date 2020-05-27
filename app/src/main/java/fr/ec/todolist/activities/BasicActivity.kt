@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import fr.ec.todolist.R
-import fr.ec.todolist.database.User
 
 abstract class BasicActivity : AppCompatActivity() {
 

@@ -2,7 +2,6 @@ package fr.ec.todolist.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -11,8 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.utilities.DbWorkerThread
 import fr.ec.todolist.R
+import fr.ec.todolist.adapters.UserAdapter
 import fr.ec.todolist.database.AppDatabase
-import fr.ec.todolist.database.User
+import fr.ec.todolist.database.user.User
 
 
 class MainActivity : BasicActivity() {
@@ -50,7 +50,7 @@ class MainActivity : BasicActivity() {
             viewManager = LinearLayoutManager(this)
 
             if (users != null) {
-                viewAdapter = MyAdapter(users)
+                viewAdapter = UserAdapter(users)
 
                 recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
                     // use this setting to improve performance if you know that changes
@@ -79,7 +79,11 @@ class MainActivity : BasicActivity() {
             val pseudo = findViewById<EditText>(R.id.pseudoEdit).text
             if (pseudo.toString() != "") {
 
-                val task = Runnable { db?.UserDao()?.insertAll(User(pseudo.toString())) }
+                val task = Runnable { db?.UserDao()?.insertAll(
+                    User(
+                        pseudo = pseudo.toString()
+                    )
+                ) }
                 mDbWorkerThread.postTask(task)
                 Toast.makeText(this, "Completed!", Toast.LENGTH_SHORT).show()
             }

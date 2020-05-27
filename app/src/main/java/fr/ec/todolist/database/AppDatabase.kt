@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import fr.ec.todolist.database.user.User
+import fr.ec.todolist.database.user.UserDao
 
 @Database(entities = [User::class], version = 1)
 abstract class AppDatabase : RoomDatabase(){
-    abstract fun UserDao(): AppDatabaseDao
+    abstract fun UserDao(): UserDao
     companion object {
 
         /**

@@ -1,4 +1,4 @@
-package fr.ec.todolist.activities
+package fr.ec.todolist.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
-import fr.ec.todolist.database.User
+import fr.ec.todolist.database.user.User
 
-class MyAdapter(private val userList: List<User>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class UserAdapter(private val userList: List<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     //this method is returning the view for each item in the list
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.user_item, parent, false)
         return ViewHolder(v)
     }
 
     //this method is binding the data on the list
-    override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(userList[position])
     }
 

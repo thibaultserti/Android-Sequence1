@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,13 +46,11 @@ class MainActivity : BasicActivity() {
     private fun displayUsers() {
         val task = Runnable {
             val users = db?.UserDao()?.getAll()
-            Log.i("azertyo", users.toString())
-
 
             viewManager = LinearLayoutManager(this)
 
             if (users != null) {
-                viewAdapter = MyAdapter(users.map { it.pseudo })
+                viewAdapter = MyAdapter(users)
 
                 recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
                     // use this setting to improve performance if you know that changes
@@ -73,22 +72,18 @@ class MainActivity : BasicActivity() {
     private fun setListeners() {
         // buttons
         val buttonOk: Button = findViewById(R.id.buttonOk)
-        val buttonDisplay: Button = findViewById(R.id.buttonDisplay)
         val buttonClear: Button = findViewById(R.id.buttonClear)
 
 
-        buttonDisplay.setOnClickListener {
-            val task = Runnable {
-                val data = db?.UserDao()?.getAll()
-                Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show()
-            }
-            mDbWorkerThread.postTask(task)
-        }
         buttonOk.setOnClickListener {
+            val pseudo = findViewById<EditText>(R.id.pseudoEdit).text
+            if (pseudo.toString() != "") {
 
-            val task = Runnable { db?.UserDao()?.insertAll(User("toto")) }
-            mDbWorkerThread.postTask(task)
-            Toast.makeText(this, "Completed!", Toast.LENGTH_SHORT).show()
+                val task = Runnable { db?.UserDao()?.insertAll(User(pseudo.toString())) }
+                mDbWorkerThread.postTask(task)
+                Toast.makeText(this, "Completed!", Toast.LENGTH_SHORT).show()
+            }
+
             val intent = Intent(this, ChoixListActivity::class.java)
             startActivity(intent);
         }

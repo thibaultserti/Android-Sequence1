@@ -33,38 +33,41 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="@string/labelButtonOk"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDisplay"
+        app:layout_constraintEnd_toStartOf="@+id/buttonClear"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pseudoLabel" />
-
-    <Button
-        android:id="@+id/buttonDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/labelButtonDisplay"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonOk"
-        app:layout_constraintEnd_toStartOf="@+id/buttonClear"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonOk" />
 
     <Button
         android:id="@+id/buttonClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/labelButtonClear"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonDisplay"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonOk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonDisplay" />
+        app:layout_constraintStart_toEndOf="@+id/buttonOk" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="358dp"
-        android:layout_height="444dp"
-        android:layout_marginTop="288dp"
+        android:layout_width="346dp"
+        android:layout_height="417dp"
+        android:layout_marginTop="72dp"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonOk" />
+
+    <TextView
+        android:id="@+id/list_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Liste des utilisateurs"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonOk"
+        app:layout_constraintVertical_bias="0.357" />
 </androidx.constraintlayout.widget.ConstraintLayout>

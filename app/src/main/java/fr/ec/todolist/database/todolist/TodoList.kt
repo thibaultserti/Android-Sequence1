@@ -9,6 +9,6 @@ import androidx.room.PrimaryKey
 data class TodoList(
     @PrimaryKey val name: String,
     @ColumnInfo(name = "owner") val owner: String,
-    @ColumnInfo(name = "items") val items: String = "item1"
+    @ColumnInfo(name = "items") val items: List<String> = listOf("item1")
 
 )

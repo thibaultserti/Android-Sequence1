@@ -5,10 +5,12 @@ import com.google.gson.Gson
 import fr.ec.todolist.database.todolist.TodoList
 
 class Converters {
+    @TypeConverter
+    fun listToJson(value: List<*>?): String = Gson().toJson(value)
 
     @TypeConverter
-    fun listToJson(value: List<TodoList>?): String = Gson().toJson(value)
+    fun jsonToTodoList(value: String) = Gson().fromJson(value, Array<TodoList>::class.java).toList()
 
     @TypeConverter
-    fun jsonToList(value: String) = Gson().fromJson(value, Array<TodoList>::class.java).toList()
+    fun jsonToList(value: String) = Gson().fromJson(value, Array<String>::class.java).toList()
 }

@@ -2,13 +2,13 @@ package fr.ec.todolist.activities
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
 import fr.ec.todolist.adapters.ListListAdapter
 import fr.ec.todolist.database.AppDatabase
+import fr.ec.todolist.database.todolist.TodoList
 import fr.ec.todolist.utilities.DbWorkerThread
 
 class ChoixListActivity : BasicActivity() {
@@ -35,11 +35,11 @@ class ChoixListActivity : BasicActivity() {
        displayListe(pseudo)
     }
 
-    private fun bindDataWithUi(users: List<String>?) {
+    private fun bindDataWithUi(listes: List<TodoList>?) {
         viewManager = LinearLayoutManager(this)
 
-        if (users != null) {
-            viewAdapter = ListListAdapter(users)
+        if (listes != null) {
+            viewAdapter = ListListAdapter(listes)
 
             recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
                 // use this setting to improve performance if you know that changes
@@ -57,8 +57,8 @@ class ChoixListActivity : BasicActivity() {
 
     private fun displayListe(pseudo: String?) {
         val task = Runnable {
-            val users = pseudo?.let { db?.UserDao()?.getListe(it) }
-            mUiHandler.post { bindDataWithUi(users) }
+            val user = pseudo?.let { db?.UserDao()?.getUser(it) }
+            mUiHandler.post { bindDataWithUi(user?.listes) }
         }
         mDbWorkerThread.postTask(task)
     }

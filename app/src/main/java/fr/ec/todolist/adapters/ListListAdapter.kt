@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
+import fr.ec.todolist.database.todolist.TodoList
 import fr.ec.todolist.database.user.User
 
-class ListListAdapter(private val userList: List<String>) : RecyclerView.Adapter<ListListAdapter.ViewHolder>() {
+class ListListAdapter(private val userList: List<TodoList>) : RecyclerView.Adapter<ListListAdapter.ViewHolder>() {
 
     //this method is returning the view for each item in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,7 +19,7 @@ class ListListAdapter(private val userList: List<String>) : RecyclerView.Adapter
 
     //this method is binding the data on the list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(userList[position])
+        holder.bindItems(userList[position].name)
     }
 
     //this method is giving the size of the list

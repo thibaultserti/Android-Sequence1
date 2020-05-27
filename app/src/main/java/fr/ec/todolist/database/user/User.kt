@@ -1,11 +1,15 @@
 package fr.ec.todolist.database.user
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
+import com.google.gson.Gson
+import fr.ec.todolist.database.todolist.TodoList
 
 @Entity(tableName = "user")
 data class User(
     @PrimaryKey val pseudo: String,
-    @ColumnInfo(name = "listes") val listes: List<String>? = listOf("Liste1")
+    @ColumnInfo(name = "listes") val listes: List<TodoList>? = listOf(TodoList("Liste1", pseudo))
 )
+{
+
+
+}

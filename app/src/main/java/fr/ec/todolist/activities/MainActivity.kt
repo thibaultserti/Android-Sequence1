@@ -2,6 +2,7 @@ package fr.ec.todolist.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -23,6 +24,7 @@ class MainActivity : BasicActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
+    private val mUiHandler = Handler()
     override fun onCreate(savedInstanceState: Bundle?) {
         // Layout
         super.onCreate(savedInstanceState)
@@ -42,29 +44,30 @@ class MainActivity : BasicActivity() {
 
     }
 
+    private fun bindDataWithUi(users: List<User>?) {
+        viewManager = LinearLayoutManager(this)
+
+        if (users != null) {
+            viewAdapter = UserAdapter(users)
+
+            recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
+                // use this setting to improve performance if you know that changes
+                // in content do not change the layout size of the RecyclerView
+                setHasFixedSize(true)
+
+                // use a linear layout manager
+                layoutManager = viewManager
+
+                // specify an viewAdapter (see also next example)
+                adapter = viewAdapter
+            }
+        }
+    }
 
     private fun displayUsers() {
         val task = Runnable {
             val users = db?.UserDao()?.getAll()
-
-            viewManager = LinearLayoutManager(this)
-
-            if (users != null) {
-                viewAdapter = UserAdapter(users)
-
-                recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
-                    // use this setting to improve performance if you know that changes
-                    // in content do not change the layout size of the RecyclerView
-                    setHasFixedSize(true)
-
-                    // use a linear layout manager
-                    layoutManager = viewManager
-
-                    // specify an viewAdapter (see also next example)
-                    adapter = viewAdapter
-                }
-            }
-
+            mUiHandler.post { bindDataWithUi(users) }
         }
         mDbWorkerThread.postTask(task)
     }
@@ -79,17 +82,21 @@ class MainActivity : BasicActivity() {
             val pseudo = findViewById<EditText>(R.id.pseudoEdit).text
             if (pseudo.toString() != "") {
 
-                val task = Runnable { db?.UserDao()?.insertAll(
-                    User(
-                        pseudo = pseudo.toString()
+                val task = Runnable {
+                    db?.UserDao()?.insertAll(
+                        User(
+                            pseudo = pseudo.toString()
+                        )
                     )
-                ) }
+                }
                 mDbWorkerThread.postTask(task)
                 Toast.makeText(this, "Completed!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ChoixListActivity::class.java)
+                intent.putExtra("pseudo", pseudo.toString())
+                startActivity(intent);
             }
 
-            val intent = Intent(this, ChoixListActivity::class.java)
-            startActivity(intent);
+
         }
         buttonClear.setOnClickListener {
             val task = Runnable { db?.UserDao()?.clear() }

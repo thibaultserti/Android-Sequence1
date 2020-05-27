@@ -1,23 +1,19 @@
 package fr.ec.todolist.database.user
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import fr.ec.todolist.database.user.User
+import androidx.room.*
 
 @Dao
 interface UserDao {
     @Query("SELECT * FROM user")
     fun getAll(): List<User>
 
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<User>
+    @Query("SELECT listes FROM user WHERE pseudo = (:pseudo)")
+    fun getListe(pseudo: String): List<String>
 
     @Query("DELETE FROM user")
     fun clear()
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg users: User)
 
     @Delete

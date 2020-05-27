@@ -2,15 +2,18 @@ package fr.ec.todolist.database
 
 import android.content.Context
 import androidx.room.*
-import fr.ec.todolist.database.todolist.TodoList
+import fr.ec.todolist.database.item.Item
+import fr.ec.todolist.database.item.ItemDao
 import fr.ec.todolist.database.user.User
 import fr.ec.todolist.database.user.UserDao
 import fr.ec.todolist.utilities.Converters
 
-@TypeConverters(Converters::class)
-@Database(entities = [User::class, TodoList::class], version = 1)
+//@TypeConverters(Converters::class)
+@Database(entities = [User::class, Item::class], version = 2)
 abstract class AppDatabase : RoomDatabase(){
-    abstract fun UserDao(): UserDao
+    abstract fun userDao(): UserDao
+    abstract fun itemDao(): ItemDao
+
     companion object {
 
         /**

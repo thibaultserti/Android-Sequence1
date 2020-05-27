@@ -66,7 +66,7 @@ class MainActivity : BasicActivity() {
 
     private fun displayUsers() {
         val task = Runnable {
-            val users = db?.UserDao()?.getAll()
+            val users = db?.userDao()?.getAll()
             mUiHandler.post { bindDataWithUi(users) }
         }
         mDbWorkerThread.postTask(task)
@@ -83,7 +83,7 @@ class MainActivity : BasicActivity() {
             if (pseudo.toString() != "") {
 
                 val task = Runnable {
-                    db?.UserDao()?.insertAll(
+                    db?.userDao()?.insertUsers(
                         User(
                             pseudo = pseudo.toString()
                         )
@@ -99,7 +99,7 @@ class MainActivity : BasicActivity() {
 
         }
         buttonClear.setOnClickListener {
-            val task = Runnable { db?.UserDao()?.clear() }
+            val task = Runnable { db?.userDao()?.clear() }
             mDbWorkerThread.postTask(task)
             Toast.makeText(this, "Database cleared!", Toast.LENGTH_SHORT).show()
         }

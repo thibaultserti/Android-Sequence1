@@ -1,7 +1,6 @@
 package fr.ec.todolist.database.user
 
 import androidx.room.*
-import fr.ec.todolist.database.todolist.TodoList
 
 @Dao
 interface UserDao {
@@ -15,7 +14,7 @@ interface UserDao {
     fun clear()
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(vararg users: User)
+    fun insertUsers(vararg users: User)
 
     @Delete
     fun delete(user: User)

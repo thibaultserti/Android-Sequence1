@@ -1,14 +1,19 @@
 package fr.ec.todolist.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
 import fr.ec.todolist.adapters.ListListAdapter
 import fr.ec.todolist.database.AppDatabase
-import fr.ec.todolist.database.todolist.TodoList
+import fr.ec.todolist.database.item.Item
 import fr.ec.todolist.utilities.DbWorkerThread
 
 class ChoixListActivity : BasicActivity() {
@@ -20,7 +25,10 @@ class ChoixListActivity : BasicActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
+    private var pseudo: String? = null
+
     private val mUiHandler = Handler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         super.setupToolBar()
@@ -31,11 +39,13 @@ class ChoixListActivity : BasicActivity() {
         mDbWorkerThread.start()
         db = AppDatabase.getInstance(this)
 
-        val pseudo = intent.getStringExtra("pseudo")
-       displayListe(pseudo)
+        pseudo = intent.getStringExtra("pseudo")
+
+        setListeners()
+        displayListe(pseudo)
     }
 
-    private fun bindDataWithUi(listes: List<TodoList>?) {
+    private fun bindDataWithUi(listes: List<String>?) {
         viewManager = LinearLayoutManager(this)
 
         if (listes != null) {
@@ -57,9 +67,44 @@ class ChoixListActivity : BasicActivity() {
 
     private fun displayListe(pseudo: String?) {
         val task = Runnable {
-            val user = pseudo?.let { db?.UserDao()?.getUser(it) }
-            mUiHandler.post { bindDataWithUi(user?.listes) }
+            val listes = pseudo?.let { db?.itemDao()?.getLists(it) }
+            Log.i("azer", listes.toString())
+            mUiHandler.post { bindDataWithUi(listes) }
         }
         mDbWorkerThread.postTask(task)
+    }
+
+    private fun setListeners() {
+        val buttonAdd: Button = findViewById(R.id.buttonAdd)
+
+        buttonAdd.setOnClickListener {
+            val name = findViewById<EditText>(R.id.editTextList).text
+            if (name.toString() != "") {
+
+                val task = Runnable {
+                    db?.itemDao()
+                        ?.insertItems(
+                            Item(
+                                name = "",
+                                owner = pseudo ?: "",
+                                liste = name.toString()
+                            )
+                        )
+                }
+                mDbWorkerThread.postTask(task)
+                Toast.makeText(this, "Completed!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ShowListActivity::class.java)
+                intent.putExtra("name", name.toString())
+                startActivity(intent);
+            }
+
+
+        }
+    }
+
+    override fun onDestroy() {
+        AppDatabase.destroyInstance()
+        mDbWorkerThread.quit()
+        super.onDestroy()
     }
 }

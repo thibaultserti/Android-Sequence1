@@ -1,11 +1,14 @@
 package fr.ec.todolist.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
+import fr.ec.todolist.activities.ChoixListActivity
 import fr.ec.todolist.database.user.User
 
 class UserAdapter(private val userList: List<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
@@ -32,6 +35,12 @@ class UserAdapter(private val userList: List<User>) : RecyclerView.Adapter<UserA
         fun bindItems(user: User) {
             val textViewName = itemView.findViewById(R.id.name) as TextView
             textViewName.text = user.pseudo
+            val card = itemView.findViewById(R.id.list_users) as CardView
+            card.setOnClickListener {
+                val intent = Intent(itemView.context, ChoixListActivity::class.java)
+                intent.putExtra("pseudo", user.pseudo)
+                itemView.context.startActivity(intent);
+            }
         }
     }
 }

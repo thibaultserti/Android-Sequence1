@@ -49,7 +49,7 @@ class ChoixListActivity : BasicActivity() {
         viewManager = LinearLayoutManager(this)
 
         if (listes != null) {
-            viewAdapter = ItemAdapter(listes)
+            viewAdapter = TodoListAdapter(listes, pseudo!!)
 
             recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
                 // use this setting to improve performance if you know that changes

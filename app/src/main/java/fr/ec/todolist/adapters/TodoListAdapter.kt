@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
 
-class ListListAdapter(private val list: List<String>) : RecyclerView.Adapter<ListListAdapter.ViewHolder>() {
+class TodoListAdapter(private val list: List<String>) : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
     //this method is returning the view for each item in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

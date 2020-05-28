@@ -3,7 +3,6 @@ package fr.ec.todolist.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -11,7 +10,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
-import fr.ec.todolist.adapters.ListListAdapter
+import fr.ec.todolist.adapters.ItemAdapter
+import fr.ec.todolist.adapters.TodoListAdapter
 import fr.ec.todolist.database.AppDatabase
 import fr.ec.todolist.database.item.Item
 import fr.ec.todolist.utilities.DbWorkerThread
@@ -49,7 +49,7 @@ class ChoixListActivity : BasicActivity() {
         viewManager = LinearLayoutManager(this)
 
         if (listes != null) {
-            viewAdapter = ListListAdapter(listes)
+            viewAdapter = ItemAdapter(listes)
 
             recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
                 // use this setting to improve performance if you know that changes

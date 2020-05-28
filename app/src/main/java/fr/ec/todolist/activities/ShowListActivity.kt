@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
-import fr.ec.todolist.adapters.ListListAdapter
+import fr.ec.todolist.adapters.TodoListAdapter
 import fr.ec.todolist.database.AppDatabase
 import fr.ec.todolist.database.item.Item
 import fr.ec.todolist.utilities.DbWorkerThread
@@ -49,7 +49,7 @@ class ShowListActivity : BasicActivity() {
         viewManager = LinearLayoutManager(this)
 
         if (listes != null) {
-            viewAdapter = ListListAdapter(listes)
+            viewAdapter = TodoListAdapter(listes)
 
             recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
                 // use this setting to improve performance if you know that changes

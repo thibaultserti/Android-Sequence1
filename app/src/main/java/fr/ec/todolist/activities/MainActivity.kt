@@ -99,7 +99,7 @@ class MainActivity : BasicActivity() {
 
         }
         buttonClear.setOnClickListener {
-            val task = Runnable { db?.userDao()?.clear() }
+            val task = Runnable { db?.clearAllTables() }
             mDbWorkerThread.postTask(task)
             Toast.makeText(this, "Database cleared!", Toast.LENGTH_SHORT).show()
         }

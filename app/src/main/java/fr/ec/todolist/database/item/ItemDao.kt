@@ -10,6 +10,9 @@ interface ItemDao {
     @Query("SELECT liste FROM item WHERE owner = (:pseudo)")
     fun getLists(pseudo: String): List<String>
 
+    @Query("SELECT name FROM item WHERE owner = (:pseudo) AND liste = (:liste)")
+    fun getItems(pseudo: String, liste: String): List<String>
+
     @Query("DELETE FROM item")
     fun clear()
 

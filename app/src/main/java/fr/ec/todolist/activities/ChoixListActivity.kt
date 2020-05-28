@@ -68,7 +68,6 @@ class ChoixListActivity : BasicActivity() {
     private fun displayListe(pseudo: String?) {
         val task = Runnable {
             val listes = pseudo?.let { db?.itemDao()?.getLists(it) }
-            Log.i("azer", listes.toString())
             mUiHandler.post { bindDataWithUi(listes) }
         }
         mDbWorkerThread.postTask(task)
@@ -85,7 +84,7 @@ class ChoixListActivity : BasicActivity() {
                     db?.itemDao()
                         ?.insertItems(
                             Item(
-                                name = "",
+                                name = "Item 1",
                                 owner = pseudo ?: "",
                                 liste = name.toString()
                             )
@@ -94,7 +93,9 @@ class ChoixListActivity : BasicActivity() {
                 mDbWorkerThread.postTask(task)
                 Toast.makeText(this, "Completed!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ShowListActivity::class.java)
-                intent.putExtra("name", name.toString())
+                intent.putExtra("liste", name.toString())
+                intent.putExtra("pseudo", pseudo)
+
                 startActivity(intent);
             }
 

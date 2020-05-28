@@ -9,6 +9,6 @@ data class Item(
     @PrimaryKey(autoGenerate = true) val foodId: Int = 0,
     @ColumnInfo(name = "owner") val owner: String,
     @ColumnInfo(name = "liste") val liste: String,
-    @ColumnInfo(name = "name") val name: String
+    @ColumnInfo(name = "name") val name: String?
 
 )

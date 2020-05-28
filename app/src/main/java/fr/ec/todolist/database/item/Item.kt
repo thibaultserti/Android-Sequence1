@@ -1,14 +1,12 @@
 package fr.ec.todolist.database.item
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 
-@Entity(tableName = "item")
+import androidx.room.Entity
+
+@Entity(tableName = "item", primaryKeys = ["owner", "liste","name"])
 data class Item(
-    @PrimaryKey(autoGenerate = true) val foodId: Int = 0,
-    @ColumnInfo(name = "owner") val owner: String,
-    @ColumnInfo(name = "liste") val liste: String,
-    @ColumnInfo(name = "name") val name: String?
+    val owner: String,
+    val liste: String,
+    val name: String
 
 )

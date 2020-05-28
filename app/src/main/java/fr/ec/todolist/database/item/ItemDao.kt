@@ -7,7 +7,7 @@ interface ItemDao {
     @Query("SELECT * FROM item")
     fun getAll(): List<Item>
 
-    @Query("SELECT liste FROM item WHERE owner = (:pseudo)")
+    @Query("SELECT DISTINCT liste FROM item WHERE owner = (:pseudo) ")
     fun getLists(pseudo: String): List<String>
 
     @Query("SELECT name FROM item WHERE owner = (:pseudo) AND liste = (:liste)")

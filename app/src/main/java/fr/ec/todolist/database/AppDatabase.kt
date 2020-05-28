@@ -9,7 +9,7 @@ import fr.ec.todolist.database.user.UserDao
 import fr.ec.todolist.utilities.Converters
 
 //@TypeConverters(Converters::class)
-@Database(entities = [User::class, Item::class], version = 1)
+@Database(entities = [User::class, Item::class], version = 2)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun userDao(): UserDao
     abstract fun itemDao(): ItemDao

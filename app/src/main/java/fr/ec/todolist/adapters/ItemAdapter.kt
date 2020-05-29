@@ -1,5 +1,6 @@
 package fr.ec.todolist.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import fr.ec.todolist.R
 import fr.ec.todolist.database.item.Item
 
 class ItemAdapter(
-    private val list: List<Item>, private val onClickListener: (Item) -> Unit
+    private val list: MutableList<Item>, private val onClickListener: (Item) -> Unit
 ) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     //this method is returning the view for each item in the list
@@ -18,7 +19,6 @@ class ItemAdapter(
         return ViewHolder(v)
     }
 
-    //this method is binding the data on the list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position])
         holder.itemView.setOnClickListener {

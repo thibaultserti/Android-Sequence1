@@ -3,7 +3,6 @@ package fr.ec.todolist.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.ec.todolist.R
 import fr.ec.todolist.adapters.ItemAdapter
-import fr.ec.todolist.adapters.TodoListAdapter
 import fr.ec.todolist.database.AppDatabase
 import fr.ec.todolist.database.item.Item
 import fr.ec.todolist.utilities.DbWorkerThread
@@ -47,10 +45,10 @@ class ShowListActivity : BasicActivity() {
         displayItem(pseudo, liste)
     }
 
-    private fun bindDataWithUi(listes: List<Item>?) {
+    private fun bindDataWithUi(listes: MutableList<Item>?) {
         viewManager = LinearLayoutManager(this)
 
-        if (listes != null) {//db?.itemDao()?.update(item)
+        if (listes != null) {
             viewAdapter = ItemAdapter(listes, onClickListener = { item ->
                 item.checked = !(item.checked)
                 val task = Runnable {
@@ -70,6 +68,7 @@ class ShowListActivity : BasicActivity() {
 
                 // specify an viewAdapter (see also next example)
                 adapter = viewAdapter
+
             }
         }
     }
@@ -77,7 +76,7 @@ class ShowListActivity : BasicActivity() {
     private fun displayItem(pseudo: String?, liste: String?) {
         val task = Runnable {
             val listes = db?.itemDao()?.getItems(pseudo!!, liste!!)
-            mUiHandler.post { bindDataWithUi(listes) }
+            mUiHandler.post { bindDataWithUi(listes?.toMutableList()) }
         }
         mDbWorkerThread.postTask(task)
     }
@@ -88,21 +87,21 @@ class ShowListActivity : BasicActivity() {
         buttonAdd.setOnClickListener {
             val name = findViewById<EditText>(R.id.editTextList).text
             if (name.toString() != "") {
-
+                val item = Item(
+                    name = name.toString(),
+                    owner = pseudo ?: "",
+                    liste = liste ?: ""
+                )
                 val task = Runnable {
                     db?.itemDao()
-                        ?.insertItems(
-                            Item(
-                                name = name.toString(),
-                                owner = pseudo ?: "",
-                                liste = liste ?: ""
-                            )
+                        ?.insertItems(item
                         )
                 }
                 mDbWorkerThread.postTask(task)
                 Toast.makeText(this, "Completed!", Toast.LENGTH_SHORT).show()
-
+                displayItem(pseudo, liste)
             }
+
         }
     }
 

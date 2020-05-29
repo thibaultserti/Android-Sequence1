@@ -3,6 +3,7 @@ package fr.ec.todolist.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -46,11 +47,18 @@ class ShowListActivity : BasicActivity() {
         displayItem(pseudo, liste)
     }
 
-    private fun bindDataWithUi(listes: List<String>?) {
+    private fun bindDataWithUi(listes: List<Item>?) {
         viewManager = LinearLayoutManager(this)
 
-        if (listes != null) {
-            viewAdapter = ItemAdapter(listes)
+        if (listes != null) {//db?.itemDao()?.update(item)
+            viewAdapter = ItemAdapter(listes, onClickListener = { item ->
+                item.checked = !(item.checked)
+                val task = Runnable {
+                    db?.itemDao()?.update(item)
+                }
+                mDbWorkerThread.postTask(task)
+
+            })
 
             recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
                 // use this setting to improve performance if you know that changes

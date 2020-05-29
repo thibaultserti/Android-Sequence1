@@ -14,7 +14,7 @@ class TodoListAdapter(private val list: List<String>, private val pseudo: String
 
     //this method is returning the view for each item in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.user_item, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.card_item, parent, false)
         return ViewHolder(v)
     }
 

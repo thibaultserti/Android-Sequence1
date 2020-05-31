@@ -12,4 +12,7 @@
     <string name="choose_your_language">Choose your language</string>
     <string name="english">English</string>
     <string name="french">Français</string>
+    <string name="a_propos_core_text">Cette application a été développée par Cyriaque Rousselot et Thibault Ayanides dans le cadre du cours de PMR de Centrale Lille. Le code source est disponible sur GitHub.</string>
+    <string name="list_user_title">Liste des utilisateurs</string>
+    <string name="enter_your_pseudo">Enter your pseudo</string>
 </resources>

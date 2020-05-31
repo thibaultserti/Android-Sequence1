@@ -80,6 +80,7 @@ class MainActivity : BasicActivity() {
 
         buttonOk.setOnClickListener {
             val pseudo = findViewById<EditText>(R.id.pseudoEdit).text
+            val pseudoEdithint = findViewById<EditText>(R.id.pseudoEdit).hint
             if (pseudo.toString() != "") {
 
                 val task = Runnable {

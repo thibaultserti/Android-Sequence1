@@ -9,4 +9,7 @@
     <string name="labelButtonOk">OK</string>
     <string name="labelButtonDisplay">Display</string>
     <string name="labelButtonClear">Clear</string>
+    <string name="choose_your_language">Choose your language</string>
+    <string name="english">English</string>
+    <string name="french">Français</string>
 </resources>

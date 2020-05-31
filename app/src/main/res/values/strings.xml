@@ -15,4 +15,11 @@
     <string name="a_propos_core_text">Cette application a été développée par Cyriaque Rousselot et Thibault Ayanides dans le cadre du cours de PMR de Centrale Lille. Le code source est disponible sur GitHub.</string>
     <string name="list_user_title">Liste des utilisateurs</string>
     <string name="enter_your_pseudo">Enter your pseudo</string>
+    <string name="checkbox">Notifications</string>
+    <string name="ringtone">ringtone</string>
+    <string name="checkbox2">checkbox2</string>
+    <string name="text">text</string>
+    <string name="list">list</string>
+    <string name="test">test</string>
+    <string name="do_ou_like_app">Do you like our app ?</string>
 </resources>

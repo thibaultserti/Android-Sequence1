@@ -15,7 +15,8 @@
             android:summary="Click to open a list of choices"
             android:title="@string/choose_your_language" />
         <CheckBoxPreference
-            android:key="@string/checkbox"
+            android:checked="false"
+            android:key="checkbox1"
             android:summary="Check or uncheck"
             android:title="@string/do_ou_like_app" />
         <!-- Une Catégorie -->

@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.EditTextPreference
-import android.preference.Preference
-import android.preference.PreferenceActivity
-import android.preference.PreferenceManager
+import android.preference.*
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.internal.ContextUtils.getActivity
 import fr.ec.todolist.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,10 +17,21 @@ class SettingsActivity : PreferenceActivity() {
         super.onCreate(savedInstanceState)
         val intent = intent
         var pseudo :String? = intent.getStringExtra("pseudo")
-        Toast.makeText(this, pseudo, Toast.LENGTH_SHORT).show()
         addPreferencesFromResource(R.xml.userpreferences);
         val pseudoPreference : EditTextPreference? = findPreference("edit_text_preference_1") as EditTextPreference?
         pseudoPreference?.setDialogMessage(pseudo)
+        val doyouliketheapp : CheckBoxPreference = findPreference("checkbox1") as CheckBoxPreference
+        doyouliketheapp.setOnPreferenceChangeListener(object: Preference.OnPreferenceChangeListener
+        {
+            override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
+                val boolean_happy : Boolean  = !doyouliketheapp.isChecked
+                if (boolean_happy)
+                    Toast.makeText(applicationContext, "Thank you !", Toast.LENGTH_SHORT).show()
+                else
+                    Toast.makeText(applicationContext, "It's alright, we will do better next time !", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        })
 
 
 

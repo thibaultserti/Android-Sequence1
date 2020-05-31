@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/SettingsActivityLabel">
         <EditTextPreference
-            android:defaultValue="false"
+            android:defaultValue="pseudo"
             android:key="edit_text_preference_1"
             android:selectAllOnFocus="true"
             android:singleLine="true"

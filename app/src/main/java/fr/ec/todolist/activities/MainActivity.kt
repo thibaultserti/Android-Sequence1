@@ -80,9 +80,8 @@ class MainActivity : BasicActivity() {
 
         buttonOk.setOnClickListener {
             val pseudo = findViewById<EditText>(R.id.pseudoEdit).text
-            val pseudoEdithint = findViewById<EditText>(R.id.pseudoEdit).hint
             if (pseudo.toString() != "") {
-
+                intent.putExtra("pseudo",pseudo.toString())
                 val task = Runnable {
                     db?.userDao()?.insertUsers(
                         User(
@@ -94,7 +93,7 @@ class MainActivity : BasicActivity() {
                 Toast.makeText(this, "Completed!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ChoixListActivity::class.java)
                 intent.putExtra("pseudo", pseudo.toString())
-                startActivity(intent);
+                startActivity(intent)
             }
 
 

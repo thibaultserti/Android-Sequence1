@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import fr.ec.todolist.R
 
 abstract class BasicActivity : AppCompatActivity() {
-
+open val pseudo :String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basic)
@@ -32,8 +32,8 @@ abstract class BasicActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.settings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
+                intent.putExtra("pseudo",this.pseudo)
                 startActivity(intent)
-
             }
             R.id.apropos -> {
                 val intent = Intent(this, AproposActivity::class.java)

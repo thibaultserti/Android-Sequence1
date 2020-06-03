@@ -24,7 +24,7 @@ class ShowListActivity : BasicActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-    private var pseudo: String? = null
+    override var pseudo: String? = null
     private var liste: String? = null
 
     private val mUiHandler = Handler()

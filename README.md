@@ -12,7 +12,7 @@ Finalement, nous avons 5 activitiés :
 * Il y a également une activité de paramètres
 * Une activité à propos atteignable depuis le menu permet de montrer la licence du code
 
-Nous avons également fait le choix d'une activité Basic duquel hérite toutes les autres. Nosu avons aussi utiliser le plus possible androidx (à savoir la toolbar ici)`
+Nous avons également fait le choix d'une activité Basic duquel hérite toutes les autres. Nosu avons aussi utiliser le plus possible androidx (à savoir la toolbar ici)
 Pour l'écran de settings nous avons dans un premier temps testé la veriosn androidx avec des fragment et la classe `PreferenceFragmentCompat`, mais pour s'en tenir au sujet, nous avons finalement utilisé la classe très fortement dépréciée de Java `PreferenceActvity`
 
 ## Base de données
